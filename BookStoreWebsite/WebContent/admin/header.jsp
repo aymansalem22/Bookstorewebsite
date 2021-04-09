@@ -9,7 +9,7 @@ Welcome, Admin | <a href="logout">Logout</a>
 </div>
 <div>
 <b>
-<a href="users">Users</a>|
+<a href="list_users">Users</a>|
 <a href="cat">Categories</a>|
 <a href="books">Books</a>|
 <a href="customer">Customers</a>|
