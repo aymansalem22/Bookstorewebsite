@@ -33,10 +33,12 @@ public class UserDAOTest {
 
 	@Test
 	public void testCreateUsers() {
+		
+		//if want create another users just change values of field user1 
 		Users user1 = new Users();
-		user1.setEmail("ali@hotmail.cim");
-		user1.setFullName("ashraf salem abusafia");
-		user1.setPassword("12489");
+		user1.setEmail("john@hotmail.com");
+		user1.setFullName("john salem abusafia");
+		user1.setPassword("12333");
 
 		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		EntityManager entityManager = entitymanagerfactory.createEntityManager();
@@ -133,6 +135,15 @@ public class UserDAOTest {
 		//WE HAVE 3 USERS IN DATABASE TABLE USER
 		assertEquals(3, totalUsers);;
 		
+		
+	}
+	
+	@Test
+	public void testFindByEmail() {
+		//check if there more one user have same email 
+		String email="ayman@example.com";
+		Users user=userDAO.findByEmail(email);
+		assertNotNull(user);
 		
 	}
 	

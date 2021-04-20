@@ -13,6 +13,8 @@ public class UsersTest {
 		user1.setFullName("ahmad salem abusafia");
 		user1.setPassword("12345");
 		
+		
+		
 		EntityManagerFactory entitymanagerfactory=Persistence.createEntityManagerFactory("BookStoreWebsite");  
 		EntityManager entityManager=entitymanagerfactory.createEntityManager();
 		

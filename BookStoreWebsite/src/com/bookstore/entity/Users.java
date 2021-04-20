@@ -11,8 +11,9 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Users.findAll",query="SELECT u FROM Users u ORDER BY u.fullName"),
-	@NamedQuery(name="Users.countAll",query="SELECT Count(*) FROM Users u")
-	
+	@NamedQuery(name="Users.countAll",query="SELECT Count(*) FROM Users u"),
+	@NamedQuery(name="Users.findByEmail",query="SELECT u FROM Users u WHERE u.email = :email")
+
 		})
 
 
@@ -26,6 +27,9 @@ public class Users {
 	public Users() {
 	}
 
+	
+	
+	
 	public Users(Integer userId, String email, String fullName, String password) {
 		this(email, fullName, password);
 		this.userId = userId;
