@@ -119,7 +119,7 @@ public class UserServices {
 
 	public void deleteUser() throws ServletException, IOException {
 
-		// we apply also Assignment 2: Update Delete User Feature
+		// we apply  Assignment 2: Update Delete User Feature
 		//we apply also Assignment 3: Prevent the default admin user id 1 from being deleted
 		
 
