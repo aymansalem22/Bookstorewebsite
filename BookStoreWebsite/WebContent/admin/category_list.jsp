@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> Manage Users  - Evergreeen Bookstore Adminstration</title>
+<title> Manage Category  - Evergreeen Bookstore Adminstration</title>
 </head>
 <body>
 <jsp:directive.include file="header.jsp"/>
@@ -55,9 +55,9 @@
 
 <jsp:directive.include file="footer.jsp"/>
 <script type="text/javascript">
-function confirmDelete(userId){
-	if (confirm('Are you sure you want to delete the user with ID '+userId+ '?')) {
-		window.location= 'delete_user?id=' +userId;
+function confirmDelete(categoryId){
+	if (confirm('Are you sure you want to delete the category with ID '+categoryId+ '?')) {
+		window.location= 'delete_category?id=' +categoryId;
 	}
 }
 

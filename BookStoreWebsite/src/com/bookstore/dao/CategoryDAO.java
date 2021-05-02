@@ -26,9 +26,9 @@ public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category
 	}
 
 	@Override
-	public Category get(Object id) {
+	public Category get(Object categoryId) {
 		
-		return super.find(Category.class, id);
+		return super.find(Category.class, categoryId);
 	}
 
 	@Override
@@ -47,6 +47,17 @@ public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category
 	public long count() {
         
 		return super.countWithNamedQuery("Category.countAll");
+	}
+	
+	
+	public Category findByName(String categoryName) {
+		
+		List<Category> result=super.findWithNamedQuery("Category.findByName","name",categoryName);
+		if(result !=null&&result.size()>0) {
+			return result.get(0);
+			
+		}
+		return null;
 	}
 
 }
