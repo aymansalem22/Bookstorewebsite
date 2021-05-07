@@ -6,19 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title> Manage Category  - Evergreeen Bookstore Adminstration</title>
+<link rel="stylesheet" href="../css/style.css">
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+
 </head>
 <body>
 <jsp:directive.include file="header.jsp"/>
 
 <div align="center">
-<h2>Category Managment</h2>
+<h2 class="pageheading">Category Managment</h2>
 <h3><a href="category_form.jsp">Create New Category</a></h3>
 
 </div>
 
 <c:if test="${message!=null}">
 <div align="center">
-<h4><i>${message}</i></h4>
+<h4 class="message">${message}</h4>
 
 </div>
 </c:if>
@@ -40,7 +44,7 @@
    
    <td>
    <a href="edit_category?id=${category.categoryId}">Edit</a> &nbsp;
-   <a href="javascript:confirmDelete(${category.categoryId})">Delete</a>
+   <a href="javascript:void(0);"  class="deleteLink" id="${category.categoryId}">Delete</a>
    </td>
    </tr>
    </c:forEach>
@@ -55,11 +59,25 @@
 
 <jsp:directive.include file="footer.jsp"/>
 <script type="text/javascript">
-function confirmDelete(categoryId){
+$(document).ready(function(){
+	$(".deleteLink").each(function(){
+		$(this).on("click",function(){
+			
+			categoryId=$(this).attr("id");
+			if(confirm('are you sure you want to delete the category with ID'+categoryId+'?')){
+				window.location='delete_category?id='+categoryId;
+			}
+					
+			
+		});
+	});
+});
+
+/* function confirmDelete(categoryId){
 	if (confirm('Are you sure you want to delete the category with ID '+categoryId+ '?')) {
 		window.location= 'delete_category?id=' +categoryId;
 	}
-}
+} */
 
 </script>
 </body>
