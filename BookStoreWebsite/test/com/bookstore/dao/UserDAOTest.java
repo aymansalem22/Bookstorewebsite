@@ -137,6 +137,23 @@ public class UserDAOTest extends BaseDAOTest{
 	}
 	
 	@Test
+	public void testCheckLoginSuccess() {
+		String email="aa@a";
+		String password="12345";	
+		boolean loginResult=userDAO.checkLogin(email, password);
+	    assertTrue(loginResult);
+	}
+	
+	@Test
+	public void testCheckLoginFailed() {
+		String email="aa@aaaa";
+		String password="123456";	
+		boolean loginResult=userDAO.checkLogin(email, password);
+	    assertFalse(loginResult);
+	}
+	
+	
+	@Test
 	public void testFindByEmail() {
 		//check if there more one user have same email 
 		String email="ayman@example.com";
