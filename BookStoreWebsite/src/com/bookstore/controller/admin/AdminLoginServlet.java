@@ -18,7 +18,7 @@ public class AdminLoginServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		UserServices userServices=new UserServices(entityManager,request,response);
+		UserServices userServices=new UserServices(request,response);
 		userServices.login();
 		/*to test only
 		 * String email=request.getParameter("email"); String

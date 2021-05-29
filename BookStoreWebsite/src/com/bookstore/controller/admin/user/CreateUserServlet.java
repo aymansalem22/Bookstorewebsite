@@ -21,7 +21,7 @@ public class CreateUserServlet extends BaseServlet {
 
 		
 		
-		UserServices userServices=new UserServices(entityManager,request,response);
+		UserServices userServices=new UserServices(request,response);
 		userServices.createUser();
 		
 	}

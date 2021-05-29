@@ -26,7 +26,7 @@ public class UpdateUserServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		UserServices userServices=new UserServices(entityManager,request, response);
+		UserServices userServices=new UserServices(request, response);
 		userServices.updateUser();
 	}
 

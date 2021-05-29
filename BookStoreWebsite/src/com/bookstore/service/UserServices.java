@@ -11,22 +11,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.dao.HashGenerator;
 import com.bookstore.dao.UserDAO;
 import com.bookstore.entity.Users;
 
 public class UserServices {
 	
-	private EntityManager entityManager;
+	
 	private UserDAO userDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 
-	public UserServices(EntityManager entityManager,
-			HttpServletRequest request, HttpServletResponse response) {
+	public UserServices(HttpServletRequest request
+			, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager=entityManager;
-		userDAO = new UserDAO(entityManager);
+		
+		userDAO = new UserDAO();
 	}
 
 	public void listuser() throws ServletException, IOException {
@@ -34,7 +35,8 @@ public class UserServices {
 		listUser(null);
 	}
 
-	public void listUser(String message) throws ServletException, IOException {
+	public void listUser(String message) 
+			throws ServletException, IOException {
 		List<Users> listUsers = userDAO.listAll();
 		request.setAttribute("listUsers", listUsers);
 		if (message != null) {
@@ -80,7 +82,11 @@ public class UserServices {
 			String errorMessage = "Could not find user with ID " + userId;
 			request.setAttribute("message", errorMessage);
 		} else {
-
+            /*
+             * set password as null to make the password is left blank by default,if left blank,the
+             * user's password won't be updated,this is to work with the encrypted password featyre
+             */
+			user.setPassword(null);
 			request.setAttribute("user", user);
 
 		}
@@ -108,9 +114,14 @@ public class UserServices {
 
 		} else {
 
-			Users user = new Users(userId, email, fullName, password);
-			userDAO.update(user);
-
+			userById.setEmail(email);
+			userById.setFullName(fullName);
+			if(password!=null&!password.isEmpty()) {
+				
+				String encryptedPassword=HashGenerator.generateMD5(password);
+				userById.setPassword(encryptedPassword);
+			}
+            userDAO.update(userById);
 			String message = "User has been updated successfully";
 			listUser(message);
 
@@ -125,7 +136,7 @@ public class UserServices {
 
 		int userId = Integer.parseInt(request.getParameter("id"));
 
-		Users user = userDAO.get(userId);
+		
 		String message = "User has been deleted successfully";
 		if (userId == 1) {
 			message = "The default admin user account cannot be deleted.";
@@ -135,6 +146,8 @@ public class UserServices {
 			return;
 		}
 
+		Users user=userDAO.get(userId);
+		
 		if (user == null) {
 			message = "Could not find user with ID " + userId + ", or it might have been deleted by another admin";
 
@@ -162,7 +175,7 @@ public class UserServices {
 					dispatcher.forward(request, response);
 			
 		}else {
-			System.out.println("Login failed!");
+			//System.out.println("Login failed!");
 			String message="Login failed!";
 			request.setAttribute("message", message);
 			

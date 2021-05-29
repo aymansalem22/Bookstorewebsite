@@ -25,7 +25,7 @@ public class UserDAOTest extends BaseDAOTest{
 	public static void setUpClass() throws Exception{
 		
          BaseDAOTest.setUpBeforeClass();
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 
 	}
 
@@ -41,7 +41,7 @@ public class UserDAOTest extends BaseDAOTest{
 		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		EntityManager entityManager = entitymanagerfactory.createEntityManager();
 
-		UserDAO userDao = new UserDAO(entityManager);
+		UserDAO userDao = new UserDAO();
 		user1 = userDao.create(user1);
 		entityManager.close();
 		entitymanagerfactory.close();

@@ -10,16 +10,17 @@ import com.bookstore.entity.Users;
 
 public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 
-	public UserDAO(EntityManager entityManager) {
-		super(entityManager);
-		// TODO Auto-generated constructor stub
+	public UserDAO() {
+		
+		
 	}
 
 	
 
 	@Override
 	public Users create(Users user) {
-		
+		String encryptedPassword=HashGenerator.generateMD5(user.getPassword());
+		user.setPassword(encryptedPassword);
 		return super.create(user);
 	}
 
@@ -52,8 +53,9 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 	
 	public boolean checkLogin(String email,String password) {
 		Map<String,Object> parameters=new HashMap<>();
+		String encryptedPassword=HashGenerator.generateMD5(password);
 		parameters.put("email", email);
-		parameters.put("password", password);
+		parameters.put("password", encryptedPassword);
 		
 		List<Users>listUsers=super.findWithNamedQuery("Users.checkLogin", parameters);
 		if(listUsers.size()==1) {

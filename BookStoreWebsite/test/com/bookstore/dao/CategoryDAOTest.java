@@ -21,7 +21,7 @@ public class CategoryDAOTest extends BaseDAOTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		BaseDAOTest.setUpBeforeClass();
-		categoryDao=new CategoryDAO(entityManager);
+		categoryDao=new CategoryDAO();
 	}
 
 	@AfterClass

@@ -30,7 +30,7 @@ public class CategoryServices {
 		this.request = request;
 		this.response = response;
         this.entityManager=entityManager;
-		categoryDAO=new CategoryDAO(entityManager);
+		categoryDAO=new CategoryDAO();
 	}
 	
 	

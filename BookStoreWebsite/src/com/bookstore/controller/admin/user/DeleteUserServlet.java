@@ -24,7 +24,7 @@ public class DeleteUserServlet extends BaseServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		UserServices userServices=new UserServices(entityManager,request, response);
+		UserServices userServices=new UserServices(request, response);
 		userServices.deleteUser();
 	}
 
