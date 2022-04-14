@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 
-
+//test
 public class CategoryServices {
 	private EntityManager entityManager;
 
