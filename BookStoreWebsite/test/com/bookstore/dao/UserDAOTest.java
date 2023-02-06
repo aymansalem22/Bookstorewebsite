@@ -34,9 +34,9 @@ public class UserDAOTest extends BaseDAOTest{
 		
 		//if want create another users just change values of field user1 
 		Users user1 = new Users();
-		user1.setEmail("adamsmith@hotmail.com");
-		user1.setFullName("adam smith");
-		user1.setPassword("12333");
+		user1.setEmail("ayman@hotmail.com");
+		user1.setFullName("aymansmith");
+		user1.setPassword("123333");
 
 		EntityManagerFactory entitymanagerfactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
 		EntityManager entityManager = entitymanagerfactory.createEntityManager();
