@@ -10,24 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.CategoryServices;
 
-
 @WebServlet("/admin/list_category")
 public class ListCategoryServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public ListCategoryServlet() {
-        super();
-       
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	public ListCategoryServlet() {
+		super();
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-      response.getWriter().println("List Category");
-      CategoryServices categoryServices=new CategoryServices(entityManager ,request, response);
-      categoryServices.listCategory();
+
+		response.getWriter().println("List Category");
+		CategoryServices categoryServices = new CategoryServices(entityManager, request, response);
+		categoryServices.listCategory();
 
 	}
 

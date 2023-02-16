@@ -28,15 +28,11 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "book_order", catalog = "bookstoredb")
 @NamedQueries({
-	@NamedQuery(name = "BookOrder.findAll", query = "SELECT bo FROM BookOrder bo ORDER BY bo.orderDate DESC"),
-	@NamedQuery(name = "BookOrder.countAll", query = "SELECT COUNT(*) FROM BookOrder"),
-	@NamedQuery(name = "BookOrder.findByCustomer", 
-		query = "SELECT bo FROM BookOrder bo WHERE bo.customer.customerId =:customerId ORDER BY bo.orderDate DESC"),
-	@NamedQuery(name = "BookOrder.findByIdAndCustomer",
-			query = "SELECT bo FROM BookOrder bo WHERE bo.orderId =:orderId AND bo.customer.customerId =:customerId"),
-	@NamedQuery(name = "BookOrder.countByCustomer",
-			query = "SELECT COUNT(bo.orderId) FROM BookOrder bo WHERE bo.customer.customerId =:customerId")
-})
+		@NamedQuery(name = "BookOrder.findAll", query = "SELECT bo FROM BookOrder bo ORDER BY bo.orderDate DESC"),
+		@NamedQuery(name = "BookOrder.countAll", query = "SELECT COUNT(*) FROM BookOrder"),
+		@NamedQuery(name = "BookOrder.findByCustomer", query = "SELECT bo FROM BookOrder bo WHERE bo.customer.customerId =:customerId ORDER BY bo.orderDate DESC"),
+		@NamedQuery(name = "BookOrder.findByIdAndCustomer", query = "SELECT bo FROM BookOrder bo WHERE bo.orderId =:orderId AND bo.customer.customerId =:customerId"),
+		@NamedQuery(name = "BookOrder.countByCustomer", query = "SELECT COUNT(bo.orderId) FROM BookOrder bo WHERE bo.customer.customerId =:customerId") })
 public class BookOrder implements java.io.Serializable {
 
 	private Integer orderId;
@@ -176,14 +172,14 @@ public class BookOrder implements java.io.Serializable {
 	@Transient
 	public int getBookCopies() {
 		int total = 0;
-		
+
 		for (OrderDetail orderDetail : orderDetails) {
 			total += orderDetail.getQuantity();
 		}
-		
+
 		return total;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -209,5 +205,4 @@ public class BookOrder implements java.io.Serializable {
 		return true;
 	}
 
-	
 }

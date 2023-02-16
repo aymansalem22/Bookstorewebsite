@@ -16,17 +16,15 @@ import com.bookstore.dao.UserDAO;
 import com.bookstore.entity.Users;
 
 public class UserServices {
-	
-	
+
 	private UserDAO userDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 
-	public UserServices(HttpServletRequest request
-			, HttpServletResponse response) {
+	public UserServices(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		
+
 		userDAO = new UserDAO();
 	}
 
@@ -35,8 +33,7 @@ public class UserServices {
 		listUser(null);
 	}
 
-	public void listUser(String message) 
-			throws ServletException, IOException {
+	public void listUser(String message) throws ServletException, IOException {
 		List<Users> listUsers = userDAO.listAll();
 		request.setAttribute("listUsers", listUsers);
 		if (message != null) {
@@ -82,10 +79,11 @@ public class UserServices {
 			String errorMessage = "Could not find user with ID " + userId;
 			request.setAttribute("message", errorMessage);
 		} else {
-            /*
-             * set password as null to make the password is left blank by default,if left blank,the
-             * user's password won't be updated,this is to work with the encrypted password featyre
-             */
+			/*
+			 * set password as null to make the password is left blank by default,if left
+			 * blank,the user's password won't be updated,this is to work with the encrypted
+			 * password featyre
+			 */
 			user.setPassword(null);
 			request.setAttribute("user", user);
 
@@ -116,12 +114,12 @@ public class UserServices {
 
 			userById.setEmail(email);
 			userById.setFullName(fullName);
-			if(password!=null&!password.isEmpty()) {
-				
-				String encryptedPassword=HashGenerator.generateMD5(password);
+			if (password != null & !password.isEmpty()) {
+
+				String encryptedPassword = HashGenerator.generateMD5(password);
 				userById.setPassword(encryptedPassword);
 			}
-            userDAO.update(userById);
+			userDAO.update(userById);
 			String message = "User has been updated successfully";
 			listUser(message);
 
@@ -130,13 +128,12 @@ public class UserServices {
 
 	public void deleteUser() throws ServletException, IOException {
 
-		// we apply  Assignment 2: Update Delete User Feature
-		//we apply also Assignment 3: Prevent the default admin user id 1 from being deleted
-		
+		// we apply Assignment 2: Update Delete User Feature
+		// we apply also Assignment 3: Prevent the default admin user id 1 from being
+		// deleted
 
 		int userId = Integer.parseInt(request.getParameter("id"));
 
-		
 		String message = "User has been deleted successfully";
 		if (userId == 1) {
 			message = "The default admin user account cannot be deleted.";
@@ -146,8 +143,8 @@ public class UserServices {
 			return;
 		}
 
-		Users user=userDAO.get(userId);
-		
+		Users user = userDAO.get(userId);
+
 		if (user == null) {
 			message = "Could not find user with ID " + userId + ", or it might have been deleted by another admin";
 
@@ -159,27 +156,27 @@ public class UserServices {
 		}
 
 	}
-	
+
 	public void login() throws ServletException, IOException {
-		String email=request.getParameter("email");
-		String password=request.getParameter("password");
-		
-		boolean loginResult=userDAO.checkLogin(email, password);
-		
-		if(loginResult) {
-			//System.out.println("User is authenticated");
-			
-			//to send and show the useremail in page in header.jsp 
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		boolean loginResult = userDAO.checkLogin(email, password);
+
+		if (loginResult) {
+			// System.out.println("User is authenticated");
+
+			// to send and show the useremail in page in header.jsp
 			request.getSession().setAttribute("useremail", email);
-			RequestDispatcher dispatcher=request.getRequestDispatcher("/admin/");
-					dispatcher.forward(request, response);
-			
-		}else {
-			//System.out.println("Login failed!");
-			String message="Login failed!";
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/");
+			dispatcher.forward(request, response);
+
+		} else {
+			// System.out.println("Login failed!");
+			String message = "Login failed!";
 			request.setAttribute("message", message);
-			
-			RequestDispatcher dispatcher=request.getRequestDispatcher("login.jsp");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

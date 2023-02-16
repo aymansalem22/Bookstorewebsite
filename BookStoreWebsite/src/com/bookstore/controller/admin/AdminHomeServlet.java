@@ -9,28 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/admin/")
 public class AdminHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public AdminHomeServlet() {
-        super();
-        
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String homepage="index.jsp";
-		System.out.println("adminhomeservlet");
-		RequestDispatcher dispatcher=request.getRequestDispatcher(homepage);
-		dispatcher.forward(request, response);
-		
+	public AdminHomeServlet() {
+		super();
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String homepage = "index.jsp";
+		System.out.println("adminhomeservlet");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(homepage);
+		dispatcher.forward(request, response);
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		doGet(request, response);
 	}

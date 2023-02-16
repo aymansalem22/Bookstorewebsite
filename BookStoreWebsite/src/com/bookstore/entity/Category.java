@@ -1,6 +1,5 @@
 package com.bookstore.entity;
 
-
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -19,11 +18,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "category", catalog = "bookstoredb")
-@NamedQueries({
-	@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c ORDER BY c.name"),
-	@NamedQuery(name = "Category.countAll", query = "SELECT COUNT(*) FROM Category"),
-	@NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name")
-})
+@NamedQueries({ @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c ORDER BY c.name"),
+		@NamedQuery(name = "Category.countAll", query = "SELECT COUNT(*) FROM Category"),
+		@NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name") })
 public class Category implements java.io.Serializable {
 
 	private Integer categoryId;
@@ -71,9 +68,5 @@ public class Category implements java.io.Serializable {
 	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
-
-	
-	
-	
 
 }

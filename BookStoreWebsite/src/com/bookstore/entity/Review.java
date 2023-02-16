@@ -1,6 +1,5 @@
 package com.bookstore.entity;
 
-
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,19 +21,13 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "review", catalog = "bookstoredb")
-@NamedQueries({
-	@NamedQuery(name = "Review.listAll", query = "SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
-	@NamedQuery(name = "Review.countAll", query = "SELECT COUNT(r) FROM Review r"),
-	@NamedQuery(name = "Review.findByCustomerAndBook", 
-		query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId"
+@NamedQueries({ @NamedQuery(name = "Review.listAll", query = "SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
+		@NamedQuery(name = "Review.countAll", query = "SELECT COUNT(r) FROM Review r"),
+		@NamedQuery(name = "Review.findByCustomerAndBook", query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId"
 				+ " AND r.book.bookId =:bookId"),
-	@NamedQuery(name = "Review.mostFavoredBooks",
-		query = "SELECT r.book, COUNT(r.book.bookId) AS ReviewCount, AVG(r.rating) as AvgRating FROM Review r "
-				+ "GROUP BY r.book.bookId HAVING AVG(r.rating) >= 4.0 "
-				+ "ORDER BY ReviewCount DESC, AvgRating DESC"),
-	@NamedQuery(name = "Review.countByCustomer",
-				query = "SELECT COUNT(r.reviewId) FROM Review r WHERE r.customer.customerId =:customerId")
-})
+		@NamedQuery(name = "Review.mostFavoredBooks", query = "SELECT r.book, COUNT(r.book.bookId) AS ReviewCount, AVG(r.rating) as AvgRating FROM Review r "
+				+ "GROUP BY r.book.bookId HAVING AVG(r.rating) >= 4.0 " + "ORDER BY ReviewCount DESC, AvgRating DESC"),
+		@NamedQuery(name = "Review.countByCustomer", query = "SELECT COUNT(r.reviewId) FROM Review r WHERE r.customer.customerId =:customerId") })
 public class Review implements java.io.Serializable {
 
 	private Integer reviewId;
@@ -129,17 +122,17 @@ public class Review implements java.io.Serializable {
 	@Transient
 	public String getStars() {
 		String result = "";
-		
+
 		int numberOfStarsOn = (int) rating;
-		
+
 		for (int i = 1; i <= numberOfStarsOn; i++) {
 			result += "on,";
 		}
-		
+
 		for (int j = numberOfStarsOn + 1; j <= 5; j++) {
 			result += "off,";
 		}
-		
+
 		return result.substring(0, result.length() - 1);
-	}	
+	}
 }

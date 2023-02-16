@@ -14,19 +14,17 @@ import com.bookstore.service.UserServices;
 public class AdminLoginServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		UserServices userServices=new UserServices(request,response);
+
+		UserServices userServices = new UserServices(request, response);
 		userServices.login();
-		/*to test only
-		 * String email=request.getParameter("email"); String
+		/*
+		 * to test only String email=request.getParameter("email"); String
 		 * password=request.getParameter("password");
 		 * response.getWriter().println(email+" , "+password);
 		 */
-	
-		
+
 	}
 
 }
