@@ -52,7 +52,6 @@ public class Review implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "review_id", unique = true, nullable = false)
 	public Integer getReviewId() {
 		return this.reviewId;

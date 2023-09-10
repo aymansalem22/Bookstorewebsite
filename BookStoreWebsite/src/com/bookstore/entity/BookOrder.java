@@ -76,7 +76,6 @@ public class BookOrder implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "order_id", unique = true, nullable = false)
 	public Integer getOrderId() {
 		return this.orderId;
