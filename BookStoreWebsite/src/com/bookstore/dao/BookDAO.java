@@ -2,12 +2,19 @@ package com.bookstore.dao;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+
 import com.bookstore.entity.Book;
 
 public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
 	public BookDAO() {
 
+		// TODO Auto-generated constructor stub
+	}
+
+	public BookDAO(EntityManager entityManager) {
 		// TODO Auto-generated constructor stub
 	}
 

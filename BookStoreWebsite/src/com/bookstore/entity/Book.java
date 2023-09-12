@@ -1,6 +1,8 @@
 package com.bookstore.entity;
 // Generated May 22, 2018 5:46:15 AM by Hibernate Tools 5.2.10.Final
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Base64;
 import java.util.Comparator;
 import java.util.Date;
@@ -12,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +25,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
-import javax.swing.event.TreeSelectionEvent;
 
 //test
 /**
@@ -225,7 +225,7 @@ public class Book implements java.io.Serializable {
 	}
 
 	@Transient
-	public void setBase64Image(String base64Image) {
+	public void SetBase64Image(String base64Image) {
 		this.base64Image = base64Image;
 	}
 
