@@ -86,7 +86,11 @@ ${category.name}
 
 <tr>
 <td align="right">Book Image:</td>
-<td aligh="left"><input type="file" id="bookImage" name="bookImage" size="20"/></td>
+<td aligh="left">
+<input type="file" id="bookImage" name="bookImage" size="20" /> <br/>
+<img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px" />
+</td>
+
 </tr>
 
 <tr>
@@ -126,10 +130,13 @@ ${category.name}
 
 
 <script type="text/javascript">
-//code jquery is more simply and short email refer to id email and therfore 
-//and must add two library jquery in folder js then add them in <head> 
+
 $(document).ready(function(){
 	$('#publishDate').datepicker();
+	$('#bookImage').change(function() {
+		showImageThumbnail(this);
+	});
+	
 	$("#userForm").validate({
 		rules:{
 			email:{ 
@@ -153,35 +160,34 @@ $(document).ready(function(){
 	});
 });
 
-/* //with java script we can use this but must add onsubmit="return validateFormInput()" in the both
-//form action="update_user" and action="create_user"  
-
-function validateFormInput(){
-	var fieldEmail=document.getElementById("email");
-	var fieldFullname=document.getElementById("fullname");
-	var fieldPassword=document.getElementById("password");
-	if(fieldEmail.value.length==0){
-		alert("Email is requierd!");
-		fieldEmail.focus();
-		return false;
-		
-	}
-	if(fieldFullname.value.length==0){
-		alert("full name is requierd!");
-		fieldFullname.focus();
-		return false;
-		
-	}
+function showImageThumbnail(fileInput){
+	var file = fileInput.files[0];
 	
-	if(fieldPassword.value.length==0){
-		alert("password is requierd!");
-		fieldPassword.focus();
-		return false;
-		
-	}
-	return true;
+	var reader = new FileReader();
 	
+	reader.onload = function(e) {
+		$('#thumbnail').attr('src',e.target.result);
+	};
+	
+	reader.readAsDataURL(file);
 }
- */
 </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
