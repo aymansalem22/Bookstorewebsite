@@ -21,8 +21,6 @@ public class ListBookServlet extends BaseServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		BookServices bookServices=new BookServices(entityManager,request,response);
 		bookServices.Listbooks();
-		
-
 	}
 
 }
