@@ -137,22 +137,27 @@ $(document).ready(function(){
 		showImageThumbnail(this);
 	});
 	
-	$("#userForm").validate({
+	$("#bookForm").validate({
 		rules:{
-			email:{ 
-				required:true,
-				email:true
-				},
-			fullname:"required",
-			password:"required",
+		category: "required",
+		title: "required",
+		author: "required",
+		isbn: "required",
+		publishDate: "required",
+		bookImage: "required",
+		price: "required",
+		description: "required",
 		},
+		
 		messages: {
-			email: {
-			required:"Please enter email",
-				email:"please enter an valid email address"
-			},
-			fullname:"Please enter full name",
-			password:"please enter password"
+			category: "Please select a category for the book",
+			title: "Please enter book title",
+			author: "Please enter book author",
+			isbn: "Please enter book ISBN",
+			publishDate: "Please enter book Publish hDate",
+			bookImage: "Please select bookImage",
+			price: "Please enter book price",
+			description: "Please enter book description",
 		}
 	});
 	$("#buttonCancel").click(function(){
