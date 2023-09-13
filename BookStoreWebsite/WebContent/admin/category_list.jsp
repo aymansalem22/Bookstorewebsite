@@ -41,7 +41,6 @@
    <td>${status.index+1}</td>
    <td>${category.categoryId}</td>
    <td>${category.name}</td>
-   
    <td>
    <a href="edit_category?id=${category.categoryId}">Edit</a> &nbsp;
    <a href="javascript:void(0);"  class="deleteLink" id="${category.categoryId}">Delete</a>

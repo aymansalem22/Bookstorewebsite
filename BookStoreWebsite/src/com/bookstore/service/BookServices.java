@@ -10,13 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.dao.BookDAO;
+import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Book;
+import com.bookstore.entity.Category;
 
 public class BookServices {
 	private EntityManager entityManager;
 	private BookDAO bookDAO;
+	private CategoryDAO categoryDAO;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	
 
 	public BookServices(EntityManager entityManager, HttpServletRequest request, HttpServletResponse response) {
 		super();
@@ -24,6 +28,7 @@ public class BookServices {
 		this.request = request;
 		this.response = response;
 		bookDAO = new BookDAO();
+		categoryDAO=new CategoryDAO();
 	}
 
 	public void Listbooks() throws ServletException, IOException {
@@ -35,5 +40,38 @@ public class BookServices {
 		requestDispatcher.forward(request, response);
 
 	}
+	
+	public void showBookNewForm() throws ServletException, IOException{
+		List<Category> listCategory=categoryDAO.listAll();
+		request.setAttribute("listCategory", listCategory);
+		
+		String newPage="book_form.jsp";
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher(newPage);
+		requestDispatcher.forward(request, response);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

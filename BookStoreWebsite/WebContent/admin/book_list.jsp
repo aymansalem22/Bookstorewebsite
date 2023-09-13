@@ -16,7 +16,7 @@
 
 <div align="center">
 <h2 class="pageheading">Books Managment</h2>
-<h3><a href="book_form.jsp">Create New Book</a></h3>
+<h3><a href="new_book">Create New Book</a></h3>
 
 </div>
 
@@ -84,14 +84,6 @@ $(document).ready(function(){
 		});
 	});
 });
-
-//java script must for delete do this code with <a href="javascript:confirmDelete(${user.userId})">Delete</a>
-/* function confirmDelete(userId){
-	if (confirm('Are you sure you want to delete the user with ID '+userId+ '?')) {
-		window.location= 'delete_user?id=' +userId;
-	}
-} */
-
 </script>
 </body>
 </html>

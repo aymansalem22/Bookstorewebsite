@@ -7,6 +7,7 @@ import java.util.Base64;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -96,7 +97,6 @@ public class Book implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-
 	@Column(name = "book_id", unique = true, nullable = false)
 	public Integer getBookId() {
 		return this.bookId;
@@ -278,6 +278,9 @@ public class Book implements java.io.Serializable {
 		return result.substring(0, result.length() - 1);
 	}
 
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -302,5 +305,8 @@ public class Book implements java.io.Serializable {
 			return false;
 		return true;
 	}
+	
+	
+	
 
 }
